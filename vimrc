@@ -135,12 +135,18 @@ func! ExtendsLoad(needUpdate)
   end
   if filereadable($extends_manager_file)
     source $extends_manager_file
+		" Coc Config Load
+		let $cocFile = expand(g:vim_cfg_dir.'coc.vim')
+		source $cocFile
     try
       call OnInit()
     catch
     endtry
     if a:needUpdate
       :PlugUpdate
+
+      " IDE Update
+      call CheckGoInstall()
     end
   end
 endf
@@ -160,6 +166,9 @@ func! OnInit()
   Plug 'vim-airline/vim-airline-themes'
   Plug 'tpope/vim-fugitive'
 
+  " IDE Supports
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
   call plug#end()
 
   set background=light
@@ -168,6 +177,10 @@ func! OnInit()
   map <silent> <F5> <ESC>:NERDTreeToggle<CR>
   map! <silent> <F5> <F5>
   map <silent> <leader>tr <F5>
+
+  " IDE Configs
+  call CocConf()
+  :CocStart
 endf
 
 " \lo load extends
