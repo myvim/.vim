@@ -38,7 +38,7 @@ function CheckGoInstall()
 	endif
 endfunction
 
-function CocConf()
+function CocConfig()
 	let g:coc_global_extensions	= ['coc-json', 'coc-explorer', 'coc-diagnostic']
 
 	" coc explorer

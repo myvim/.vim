@@ -179,7 +179,7 @@ func! OnInit()
   map <silent> <leader>tr <F5>
 
   " IDE Configs
-  call CocConf()
+  call CocConfig()
   :CocStart
 endf
 
