@@ -144,9 +144,6 @@ func! ExtendsLoad(needUpdate)
     endtry
     if a:needUpdate
       :PlugUpdate
-
-      " IDE Update
-      call CheckGoInstall()
     end
   end
 endf
@@ -165,6 +162,7 @@ func! OnInit()
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
   Plug 'tpope/vim-fugitive'
+  Plug 'junegunn/gv.vim' " Nice git logs plugin
 
   " IDE Supports
   Plug 'neoclide/coc.nvim', {'branch': 'release'}

@@ -1,4 +1,4 @@
-function CheckGoInstall()
+function GoInstall()
 	if !executable('gopls')
 		echo 'Installing go-tools -> gopls..'
 		silent exec "!go get golang.org/x/tools/gopls@latest"
@@ -37,6 +37,8 @@ function CheckGoInstall()
 		endif
 	endif
 endfunction
+
+command GoInstall :call GoInstall()
 
 function CocConfig()
 	let g:coc_global_extensions	= ['coc-json', 'coc-explorer', 'coc-diagnostic']
