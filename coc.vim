@@ -38,7 +38,7 @@ function GoInstall()
 	endif
 endfunction
 
-command GoInstall :call GoInstall()
+command! GoInstall :call GoInstall()
 
 function CocConfig()
 	let g:coc_global_extensions	= ['coc-json', 'coc-explorer', 'coc-diagnostic']
