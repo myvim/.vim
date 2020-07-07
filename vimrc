@@ -93,15 +93,11 @@ map! <silent> <C-n> <ESC><C-n>
 map <silent> <C-j> :vsplit<CR>
 map! <silent> <C-j> <ESC><C-j>
 
-map <silent> <F12> <ESC>:e $MYVIMRC<CR>
-map! <silent> <F12> <F12>
-map <silent> <C-F12> <ESC>:so $MYVIMRC<CR>
-map! <silent> <C-F12> <C-F12>
-map <silent> <leader>ec <F12><CR>
-map <silent> <leader>lc <C-F12><CR>
+command! Config :e $MYVIMRC
+command! RlConfig :so $MYVIMRC
 
-map <silent> <leader>w :w!<CR>
-map! <silent> <leader>w :w!<CR>
+map <silent> <F12> <ESC>:Config<CR>
+map! <silent> <F12> <ESC>:Config<CR>
 
 " <Show/Hide Menu Toolbar RollLink>
 
@@ -121,7 +117,8 @@ func! ToggleMenu()
   end
 endf
 call HideMenu()
-map <silent> <F11> :call ToggleMenu()<CR>
+command! ToggleMenu call ToggleMenu()
+map <silent> <F11> :ToggleMenu<CR>
 
 " <Extends>
 
@@ -139,17 +136,14 @@ func! ExtendsLoad(needUpdate)
 		let $cocFile = expand(g:vim_cfg_dir.'coc.vim')
 		source $cocFile
     try
-      call OnInit()
+      call OnInit(a:needUpdate)
     catch
     endtry
-    if a:needUpdate
-      :PlugUpdate
-    end
   end
 endf
 
 " Extends And Configs Write Here
-func! OnInit()
+func! OnInit(needUpdate)
   call plug#begin(g:plugged_path)
 
   Plug 'junegunn/vim-plug'
@@ -169,22 +163,24 @@ func! OnInit()
 
   call plug#end()
 
+  if a:needUpdate
+    :PlugUpdate
+  end
+
   set background=light
   colorscheme one
 
-  map <silent> <F5> <ESC>:NERDTreeToggle<CR>
+  command! Tree :NERDTreeToggle
+  map <silent> <F5> <ESC>:Tree<CR>
   map! <silent> <F5> <F5>
-  map <silent> <leader>tr <F5>
 
   " IDE Configs
   call CocConfig()
   :CocStart
 endf
 
-" \lo load extends
-map <silent> <leader>lo :call ExtendsLoad(0)<CR>
-" \lu load and install/update extends
-map <silent> <leader>lu :call ExtendsLoad(1)<CR>
+command! ExLoad call ExtendsLoad(0)
+command! ExUpdate call ExtendsLoad(1)
 
 " Load Extends Vim package on init
 call ExtendsLoad(0)
