@@ -13,21 +13,21 @@ PowerShell> link $HOME\.vim\vimrc _vimrc
 ```
 open vim, type:
 ```
-\lu
+:ExUpdate
 ```
 to install plugins
 
 ### Common Functions
 
 ```
-\lu       : Install/Update Plugins
-\lo       : Reload Plugins
-\tr       : Toggle File Explorer Tree
-\ec       : Edit vimrc
-\lc       : Reload vimrc
-F5        : eq `\tr`
-F11       : Toggle GUI Vim Title/Menu
-F12       : eq `\ec`
-Ctrl+F12  : eq `\lc`
-```
+:ExUpdate             :     Load and Update Extends
+:ExLoad               :     Load Extends
+:Config               :     Edit vimrc
+:RlConfig             :     Reload vimrc
+:Tree                 :     Toggle File Explorer Tree
+:ToggleMenu           :     Toggle GUI Vim Title/Menu
 
+F5                    :     eq `:Tree`
+F11                   :     eq `:ToggleMenu`
+F12                   :     eq `:Config`
+```
