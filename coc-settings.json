@@ -1,0 +1,25 @@
+{
+  "languageserver": {
+    "clangd": {
+      "command": "clangd",
+      "rootPatterns": ["compile_flags.txt", "compile_commands.json"],
+      "filetypes": ["c", "cc", "cpp", "c++", "objc", "objcpp"]
+    },
+    "golang":{
+      "command":"gopls",
+      "rootPatterns":["go.mod", ".vim/", ".git/", ".hg/"],
+      "filetypes":["go"],
+      "initializationOptions":{
+        "completeUnimported":true
+      }
+    }
+  },
+  "explorer.icon.enableNerdfont":true,
+  "explorer.keyMappings":{
+    "<cr>":["expandable?", ["expanded?", "collapse", "expand"], "open"]
+  },
+  "diagnostic-languageserver.filetypes":{"go":"golangci-lint"},
+  "diagnostic-languageserver.formatters":{"goreturns":{"command":"goreturns"}},
+  "diagnostic-languageserver.formatFiletypes":{"go":"goreturns"},
+  "coc.preferences.formatOnSaveFiletypes":["go"]
+}

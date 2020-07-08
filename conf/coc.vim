@@ -1,45 +1,3 @@
-function GoInstall()
-	if !executable('gopls')
-		echo 'Installing go-tools -> gopls..'
-		silent exec "!go get golang.org/x/tools/gopls@latest"
-		if executable('gopls')
-			echo 'Install complete.'
-		else
-			echoerr 'Install Faild.'
-		endif
-	endif
-
-	if !executable('goreturns')
-		echo 'Installing go-tools -> goreturns..'
-		silent exec "!go get github.com/sqs/goreturns"
-		if executable('goreturns')
-			echo 'Install complete.'
-		else
-			echoerr 'Install Faild.'
-		endif
-	endif
-
-	if !executable('golangci-lint')
-		echo 'Installing go-tools -> golangci-lint..'
-		if has("win32") || has("win32unix")
-			let tempfile=tempname().".ps1"
-			silent exec "!powershell -NoProfile -Command chcp 65001;Invoke-WebRequest https://raw.githubusercontent.com/geekjam/Scripts/master/golangci-lint.ps1 -OutFile ".tempfile
-			silent exec "!powershell -NoProfile -File ".tempfile
-		else
-			let tempfile=tempname().".sh"
-			silent exec "!curl -L -o ".tempfile." https://raw.githubusercontent.com/geekjam/Scripts/master/golangci-lint.sh"
-			silent exec "!sh ".tempfile
-		endif
-		if executable('golangci-lint')
-			echo 'Install complete.'
-		else
-			echoerr 'Install Faild.'
-		endif
-	endif
-endfunction
-
-command! GoInstall :call GoInstall()
-
 function CocConfig()
 	let g:coc_global_extensions	= ['coc-json', 'coc-explorer', 'coc-diagnostic']
 
@@ -50,24 +8,6 @@ function CocConfig()
 	autocmd BufEnter * if (winnr("$") == 1 && &filetype == 'coc-explorer') | q | endif
 	nmap <Leader>ed :CocCommand explorer --preset simplify<CR>
 	nmap <Leader>ef :CocCommand explorer --preset floating<CR>
-
-	" coc user config
-	let g:coc_user_config = {}
-	" coclist explorer
-	let g:coc_user_config['explorer.icon.enableNerdfont'] = v:true
-	let g:coc_user_config['explorer.keyMappings'] = {"<cr>": ["expandable?", ["expanded?", "collapse", "expand"], "open"]}
-
-	let g:coc_user_config['diagnostic-languageserver.filetypes'] = { 'go': "golangci-lint" }
-	let g:coc_user_config['diagnostic-languageserver.formatters'] = { 'goreturns': { "command": "goreturns" } }
-	let g:coc_user_config['diagnostic-languageserver.formatFiletypes'] = { 'go': "goreturns" }
-	let g:coc_user_config['coc.preferences.formatOnSaveFiletypes'] = [ 'go' ]
-	" coc languageserver golang
-	let g:coc_user_config['languageserver'] = {'golang':{}}
-	let g:coc_user_config['languageserver']['golang']={}
-	let g:coc_user_config['languageserver']['golang']['command']='gopls'
-	let g:coc_user_config['languageserver']['golang']['rootPatterns']=["go.mod", ".vim/", ".git/", ".hg/"]
-	let g:coc_user_config['languageserver']['golang']['filetypes']=["go"]
-	let g:coc_user_config['languageserver']['golang']['initializationOptions']={"completeUnimported": v:true}
 
 	"TextEdit might fail if hidden is not set.
 	set hidden

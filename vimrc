@@ -132,9 +132,11 @@ func! ExtendsLoad(needUpdate)
   end
   if filereadable($extends_manager_file)
     source $extends_manager_file
-		" Coc Config Load
-		let $cocFile = expand(g:vim_cfg_dir.'coc.vim')
-		source $cocFile
+
+		let $cfgDir = g:vim_cfg_dir.'conf'
+		source $cfgDir/coc.vim
+		source $cfgDir/golang.vim
+
     try
       call OnInit(a:needUpdate)
     catch
@@ -158,8 +160,14 @@ func! OnInit(needUpdate)
   Plug 'tpope/vim-fugitive'
   Plug 'junegunn/gv.vim' " Nice git logs plugin
 
+  " Search
+  Plug 'myvim/rg', { 'do': { -> rg#install() }}
+  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+  Plug 'junegunn/fzf.vim'
+
   " IDE Supports
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  Plug 'vim-scripts/a.vim'
 
   call plug#end()
 
