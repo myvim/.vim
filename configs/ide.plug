@@ -1,0 +1,3 @@
+  " IDE Supports
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  Plug 'vim-scripts/a.vim'

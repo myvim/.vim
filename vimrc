@@ -133,15 +133,21 @@ func! ExtendsLoad(needUpdate)
   if filereadable($extends_manager_file)
     source $extends_manager_file
 
-		let $cfgDir = g:vim_cfg_dir.'conf'
-		source $cfgDir/coc.vim
-		source $cfgDir/golang.vim
-
     try
       call OnInit(a:needUpdate)
     catch
     endtry
   end
+endf
+
+func! LoadRcs(path, filter)
+  for $rc in split(globpath(a:path, a:filter), '\n')
+    try
+      source $rc
+    catch
+      echo 'load `'.$rc.'` failed'
+    endtry
+  endfor
 endf
 
 " Extends And Configs Write Here
@@ -158,16 +164,10 @@ func! OnInit(needUpdate)
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
   Plug 'tpope/vim-fugitive'
-  Plug 'junegunn/gv.vim' " Nice git logs plugin
+  Plug 'junegunn/gv.vim'
 
-  " Search
-  Plug 'myvim/rg', { 'do': { -> rg#install() }}
-  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-  Plug 'junegunn/fzf.vim'
-
-  " IDE Supports
-  Plug 'neoclide/coc.nvim', {'branch': 'release'}
-  Plug 'vim-scripts/a.vim'
+  call LoadRcs(g:vim_cfg_dir.'configs', '*.plug')
+  call LoadRcs(g:vim_cfg_dir.'configs.local', '*.plug')
 
   call plug#end()
 
@@ -182,9 +182,8 @@ func! OnInit(needUpdate)
   map <silent> <F5> <ESC>:Tree<CR>
   map! <silent> <F5> <F5>
 
-  " IDE Configs
-  call CocConfig()
-  :CocStart
+  call LoadRcs(g:vim_cfg_dir.'configs', '*.vim')
+  call LoadRcs(g:vim_cfg_dir.'configs.local', '*.vim')
 endf
 
 command! ExLoad call ExtendsLoad(0)

@@ -1,4 +1,5 @@
 function CocConfig()
+  let g:coc_start_at_startup = 1
 	let g:coc_global_extensions	= ['coc-json', 'coc-explorer', 'coc-diagnostic']
 
 	" coc explorer
@@ -66,3 +67,4 @@ function CocConfig()
 	nnoremap <silent> <Leader>ff  :<C-u>CocList outline<cr>
 endfunction
 
+call CocConfig()

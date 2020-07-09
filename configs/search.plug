@@ -1,0 +1,4 @@
+  " Search
+  Plug 'myvim/rg', { 'do': { -> rg#install() }}
+  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+  Plug 'junegunn/fzf.vim'
