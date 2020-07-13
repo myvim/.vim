@@ -93,8 +93,19 @@ map! <silent> <C-n> <ESC><C-n>
 map <silent> <C-j> :vsplit<CR>
 map! <silent> <C-j> <ESC><C-j>
 
-command! Config :e $MYVIMRC
-command! RlConfig :so $MYVIMRC
+let $vimrc_path = $MYVIMRC
+let g:vim_cfg_dir = expand($HOME.'/.vim/')
+if !filereadable($vimrc_path)
+  if filereadable($VIM/vimrc)
+    let $vimrc_path = $VIM/vimrc
+    let g:vim_cfg_dir = expand($VIM.'/.vim/')
+  elseif filereadable($VIM/_vimrc)
+    let $vimrc_path = $VIM/_vimrc
+    let g:vim_cfg_dir = expand($VIM.'/.vim/')
+  end
+end
+command! Config :e $vimrc_path
+command! RlConfig :so $vimrc_path
 
 map <silent> <F12> <ESC>:Config<CR>
 map! <silent> <F12> <ESC>:Config<CR>
@@ -122,7 +133,6 @@ map <silent> <F11> :ToggleMenu<CR>
 
 " <Extends>
 
-let g:vim_cfg_dir = expand($HOME.'/.vim/')
 let g:plugged_path = expand(g:vim_cfg_dir.'plugged')
 func! ExtendsLoad(needUpdate)
   let extends_manager = expand(g:plugged_path.'/vim-plug')

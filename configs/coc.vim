@@ -1,6 +1,6 @@
 function CocConfig()
   let g:coc_start_at_startup = 1
-	let g:coc_global_extensions	= ['coc-json', 'coc-explorer', 'coc-diagnostic']
+	let g:coc_global_extensions	= ['coc-json', 'coc-explorer', 'coc-diagnostic', 'coc-snippets']
 
 	" coc explorer
 	let g:coc_explorer_global_presets={}
