@@ -93,8 +93,19 @@ map! <silent> <C-n> <ESC><C-n>
 map <silent> <C-j> :vsplit<CR>
 map! <silent> <C-j> <ESC><C-j>
 
-command! Config :e $MYVIMRC
-command! RlConfig :so $MYVIMRC
+let $vimrc_path = $MYVIMRC
+let g:vim_cfg_dir = expand($HOME.'/.vim/')
+if !filereadable($vimrc_path)
+  if filereadable($VIM/vimrc)
+    let $vimrc_path = $VIM/vimrc
+    let g:vim_cfg_dir = expand($VIM.'/.vim/')
+  elseif filereadable($VIM/_vimrc)
+    let $vimrc_path = $VIM/_vimrc
+    let g:vim_cfg_dir = expand($VIM.'/.vim/')
+  end
+end
+command! Config :e $vimrc_path
+command! RlConfig :so $vimrc_path
 
 map <silent> <F12> <ESC>:Config<CR>
 map! <silent> <F12> <ESC>:Config<CR>
@@ -122,7 +133,6 @@ map <silent> <F11> :ToggleMenu<CR>
 
 " <Extends>
 
-let g:vim_cfg_dir = expand($HOME.'/.vim/')
 let g:plugged_path = expand(g:vim_cfg_dir.'plugged')
 func! ExtendsLoad(needUpdate)
   let extends_manager = expand(g:plugged_path.'/vim-plug')
@@ -132,11 +142,22 @@ func! ExtendsLoad(needUpdate)
   end
   if filereadable($extends_manager_file)
     source $extends_manager_file
+
     try
       call OnInit(a:needUpdate)
     catch
     endtry
   end
+endf
+
+func! LoadRcs(path, filter)
+  for $rc in split(globpath(a:path, a:filter), '\n')
+    try
+      source $rc
+    catch
+      echo 'load `'.$rc.'` failed'
+    endtry
+  endfor
 endf
 
 " Extends And Configs Write Here
@@ -153,6 +174,10 @@ func! OnInit(needUpdate)
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
   Plug 'tpope/vim-fugitive'
+  Plug 'junegunn/gv.vim'
+
+  call LoadRcs(g:vim_cfg_dir.'configs', '*.plug')
+  call LoadRcs(g:vim_cfg_dir.'configs.local', '*.plug')
 
   call plug#end()
 
@@ -166,6 +191,9 @@ func! OnInit(needUpdate)
   command! Tree :NERDTreeToggle
   map <silent> <F5> <ESC>:Tree<CR>
   map! <silent> <F5> <F5>
+
+  call LoadRcs(g:vim_cfg_dir.'configs', '*.vim')
+  call LoadRcs(g:vim_cfg_dir.'configs.local', '*.vim')
 endf
 
 command! ExLoad call ExtendsLoad(0)
