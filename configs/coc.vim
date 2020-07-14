@@ -10,6 +10,9 @@ function CocConfig()
 	nmap <Leader>ed :CocCommand explorer --preset simplify<CR>
 	nmap <Leader>ef :CocCommand explorer --preset floating<CR>
 
+  map <F5> <Leader>ed
+  map <F6> <Leader>ef
+
 	"TextEdit might fail if hidden is not set.
 	set hidden
 	" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
@@ -67,4 +70,6 @@ function CocConfig()
 	nnoremap <silent> <Leader>ff  :<C-u>CocList outline<cr>
 endfunction
 
-call CocConfig()
+if executable("node")
+  call CocConfig()
+end

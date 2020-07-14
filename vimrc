@@ -175,6 +175,7 @@ func! OnInit(needUpdate)
   Plug 'vim-airline/vim-airline-themes'
   Plug 'tpope/vim-fugitive'
   Plug 'junegunn/gv.vim'
+  Plug 'Xuyuanp/nerdtree-git-plugin'
 
   call LoadRcs(g:vim_cfg_dir.'configs', '*.plug')
   call LoadRcs(g:vim_cfg_dir.'configs.local', '*.plug')
@@ -191,6 +192,19 @@ func! OnInit(needUpdate)
   command! Tree :NERDTreeToggle
   map <silent> <F5> <ESC>:Tree<CR>
   map! <silent> <F5> <F5>
+
+  let g:NERDTreeIndicatorMapCustom = {
+    \ "Modified"  : "✹",
+    \ "Staged"    : "✚",
+    \ "Untracked" : "✭",
+    \ "Renamed"   : "➜",
+    \ "Unmerged"  : "═",
+    \ "Deleted"   : "✖",
+    \ "Dirty"     : "✗",
+    \ "Clean"     : "✔︎",
+    \ 'Ignored'   : '☒',
+    \ "Unknown"   : "?"
+    \ }
 
   call LoadRcs(g:vim_cfg_dir.'configs', '*.vim')
   call LoadRcs(g:vim_cfg_dir.'configs.local', '*.vim')
