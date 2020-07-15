@@ -1,12 +1,15 @@
-function CocConfig()
+function ConfigCoc()
   let g:coc_start_at_startup = 1
 	let g:coc_global_extensions	= ['coc-json', 'coc-explorer', 'coc-diagnostic', 'coc-snippets']
 
 	" coc explorer
-	let g:coc_explorer_global_presets={}
-	let g:coc_explorer_global_presets['floating']={'position': 'floating','open-action-strategy': 'sourceWindow'}
-	let g:coc_explorer_global_presets['simplify']={'file-child-template': '[git] [selection | clip | 1] [indent][icon | 1] [diagnosticError & 1] [filename omitCenter 1]'}
+	let g:coc_explorer_global_presets={
+    \'floating':{'position': 'floating','open-action-strategy': 'sourceWindow'},
+	  \'simplify': {'file-child-template': '[git | 2] [selection | clip | 1] [indent][icon | 1] [diagnosticError & 1] [filename omitCenter 1]'}
+  \}
+
 	autocmd BufEnter * if (winnr("$") == 1 && &filetype == 'coc-explorer') | q | endif
+
 	nmap <Leader>ed :CocCommand explorer --preset simplify<CR>
 	nmap <Leader>ef :CocCommand explorer --preset floating<CR>
 
@@ -71,5 +74,5 @@ function CocConfig()
 endfunction
 
 if executable("node")
-  call CocConfig()
+  call ConfigCoc()
 end

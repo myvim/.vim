@@ -19,6 +19,11 @@
     "<cr>":["expandable?", ["expanded?", "collapse", "expand"], "open"]
   },
   "diagnostic-languageserver.filetypes":{"go":"golangci-lint"},
+  "diagnostic-languageserver.linters":{
+    "golangci-lint": {
+      "args": [ "run", "--out-format", "json", "." ]
+    }
+  },
   "diagnostic-languageserver.formatters":{"goreturns":{"command":"goreturns"}},
   "diagnostic-languageserver.formatFiletypes":{"go":"goreturns"},
   "coc.preferences.formatOnSaveFiletypes":["go"]
