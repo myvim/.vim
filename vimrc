@@ -87,12 +87,6 @@ map! <silent> <C-a> <ESC><C-a>
 map <silent> <D-a> <C-a>
 map! <silent> <D-a> <ESC><D-a>
 
-map <silent> <C-n> :split<CR>
-map! <silent> <C-n> <ESC><C-n>
-
-map <silent> <C-j> :vsplit<CR>
-map! <silent> <C-j> <ESC><C-j>
-
 let $vimrc_path = $MYVIMRC
 let g:vim_cfg_dir = expand($HOME.'/.vim/')
 if !filereadable($vimrc_path)
@@ -176,6 +170,7 @@ func! OnInit(needUpdate)
   Plug 'tpope/vim-fugitive'
   Plug 'junegunn/gv.vim'
   Plug 'Xuyuanp/nerdtree-git-plugin'
+  Plug 'terryma/vim-multiple-cursors'
 
   call LoadRcs(g:vim_cfg_dir.'configs', '*.plug')
   call LoadRcs(g:vim_cfg_dir.'configs.local', '*.plug')
