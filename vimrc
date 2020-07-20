@@ -87,23 +87,15 @@ map! <silent> <C-a> <ESC><C-a>
 map <silent> <D-a> <C-a>
 map! <silent> <D-a> <ESC><D-a>
 
-map <silent> <C-n> :split<CR>
-map! <silent> <C-n> <ESC><C-n>
+let $vim_home_dir = $HOME.'/.vim'
+let $vim_sys_dir = $VIM.'/.vim'
 
-map <silent> <C-j> :vsplit<CR>
-map! <silent> <C-j> <ESC><C-j>
-
-let $vimrc_path = $MYVIMRC
-let g:vim_cfg_dir = expand($HOME.'/.vim/')
-if !filereadable($vimrc_path)
-  if filereadable($VIM/vimrc)
-    let $vimrc_path = $VIM/vimrc
-    let g:vim_cfg_dir = expand($VIM.'/.vim/')
-  elseif filereadable($VIM/_vimrc)
-    let $vimrc_path = $VIM/_vimrc
-    let g:vim_cfg_dir = expand($VIM.'/.vim/')
-  end
+let $vim_cfg_dir = $vim_home_dir
+if !filereadable($vim_cfg_dir.'/vimrc') && ( filereadable($vim_sys_dir.'/vimrc') )
+  let $vim_cfg_dir = $vim_sys_dir
 end
+let $vimrc_path = $vim_cfg_dir.'/vimrc'
+
 command! Config :e $vimrc_path
 command! RlConfig :so $vimrc_path
 
@@ -133,7 +125,7 @@ map <silent> <F11> :ToggleMenu<CR>
 
 " <Extends>
 
-let g:plugged_path = expand(g:vim_cfg_dir.'plugged')
+let g:plugged_path = $vim_cfg_dir.'/plugged'
 func! ExtendsLoad(needUpdate)
   let extends_manager = expand(g:plugged_path.'/vim-plug')
   let $extends_manager_file = extends_manager.'/plug.vim'
@@ -175,9 +167,11 @@ func! OnInit(needUpdate)
   Plug 'vim-airline/vim-airline-themes'
   Plug 'tpope/vim-fugitive'
   Plug 'junegunn/gv.vim'
+  Plug 'Xuyuanp/nerdtree-git-plugin'
+  Plug 'terryma/vim-multiple-cursors'
 
-  call LoadRcs(g:vim_cfg_dir.'configs', '*.plug')
-  call LoadRcs(g:vim_cfg_dir.'configs.local', '*.plug')
+  call LoadRcs($vim_cfg_dir.'/configs', '*.plug')
+  call LoadRcs($vim_cfg_dir.'/configs.local', '*.plug')
 
   call plug#end()
 
@@ -192,8 +186,21 @@ func! OnInit(needUpdate)
   map <silent> <F5> <ESC>:Tree<CR>
   map! <silent> <F5> <F5>
 
-  call LoadRcs(g:vim_cfg_dir.'configs', '*.vim')
-  call LoadRcs(g:vim_cfg_dir.'configs.local', '*.vim')
+  let g:NERDTreeIndicatorMapCustom = {
+    \ "Modified"  : "✹",
+    \ "Staged"    : "✚",
+    \ "Untracked" : "✭",
+    \ "Renamed"   : "➜",
+    \ "Unmerged"  : "═",
+    \ "Deleted"   : "✖",
+    \ "Dirty"     : "✗",
+    \ "Clean"     : "✔︎",
+    \ 'Ignored'   : '☒',
+    \ "Unknown"   : "?"
+    \ }
+
+  call LoadRcs($vim_cfg_dir.'/configs', '*.vim')
+  call LoadRcs($vim_cfg_dir.'/configs.local', '*.vim')
 endf
 
 command! ExLoad call ExtendsLoad(0)

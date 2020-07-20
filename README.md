@@ -3,19 +3,33 @@
 * require `Git`
 
 ### Install
+
 ```
 > cd $HOME
 > git clone https://github.com/myvim/.vim
 ```
-after clone, if windows
+if in *Windows*, need put below text into vim home config file like ```$HOME/_vimrc```
 ```
-PowerShell> link $HOME\.vim\vimrc _vimrc
+:so $HOME/.vim/vimrc
 ```
-open vim, type:
+
+### Install Portable
+
+```
+> cd $VIM
+> git clone https://github.com/myvim/.vim
+```
+put below text into vim system config file
+```
+:so $VIM/.vim/vimrc
+```
+
+### Extends
+command
 ```
 :ExUpdate
 ```
-to install plugins
+to install/update extends
 
 ### Common Functions
 
