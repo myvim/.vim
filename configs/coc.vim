@@ -1,6 +1,6 @@
 function ConfigCoc()
   let g:coc_start_at_startup = 1
-	let g:coc_global_extensions	= ['coc-json', 'coc-explorer', 'coc-diagnostic', 'coc-snippets']
+	let g:coc_global_extensions	+= ['coc-json', 'coc-explorer', 'coc-diagnostic', 'coc-snippets', 'coc-cmake', 'coc-git', 'coc-highlight', 'coc-sh', 'coc-vimlsp', 'coc-syntax', 'coc-pairs', 'coc-yaml']
 
 	" coc explorer
 	let g:coc_explorer_global_presets={
@@ -71,6 +71,8 @@ function ConfigCoc()
 	nnoremap <silent> <Leader>ce  :<C-u>CocList extensions<cr>
 	" Find symbol of current document.
 	nnoremap <silent> <Leader>ff  :<C-u>CocList outline<cr>
+  " Renaming
+  nmap <leader>rn <Plug>(coc-rename)
 endfunction
 
 if executable("node")

@@ -1,4 +1,4 @@
-Plug 'posva/vim-vue'
+" Plug 'posva/vim-vue'
 Plug 'pangloss/vim-javascript'
 Plug 'ap/vim-css-color'
 Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' }
@@ -9,3 +9,5 @@ Plug 'leafgarland/typescript-vim'
 Plug 'crusoexia/vim-javascript-lib'
 Plug 'jparise/vim-graphql'
 Plug 'elzr/vim-json'
+Plug 'peitalin/vim-jsx-typescript'
+Plug 'styled-components/vim-styled-components', { 'branch': 'main' }

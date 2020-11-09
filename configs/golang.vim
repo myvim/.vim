@@ -1,3 +1,4 @@
+let g:coc_global_extensions += ['coc-go']
 function GoInstall()
 	if !executable('gopls')
 		echo 'Installing go-tools -> gopls..'

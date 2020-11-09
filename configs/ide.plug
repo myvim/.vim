@@ -1,9 +1,10 @@
 " IDE Supports
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
 Plug 'vim-scripts/a.vim'
 Plug 'honza/vim-snippets'
 Plug 'Raimondi/delimitMate'
 Plug 'gregsexton/MatchTag'
+Plug 'luochen1990/rainbow'
 
 " Persistent Session
 Plug 'mhinz/vim-startify'

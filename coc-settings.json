@@ -1,17 +1,13 @@
 {
   "languageserver": {
-    "clangd": {
-      "command": "clangd",
-      "rootPatterns": ["compile_flags.txt", "compile_commands.json"],
-      "filetypes": ["c", "cc", "cpp", "c++", "objc", "objcpp"]
-    },
-    "golang":{
-      "command":"gopls",
-      "rootPatterns":["go.mod", ".vim/", ".git/", ".hg/"],
-      "filetypes":["go"],
-      "initializationOptions":{
-        "completeUnimported":true
-      }
+    "flow": {
+      "command": "flow",
+      "args": ["lsp"],
+      "filetypes": ["javascript", "javascriptreact"],
+      "initializationOptions": {},
+      "requireRootPattern": true,
+      "settings": {},
+      "rootPatterns": [".flowconfig"]
     }
   },
   "explorer.icon.enableNerdfont":true,
@@ -26,5 +22,9 @@
   },
   "diagnostic-languageserver.formatters":{"goreturns":{"command":"goreturns"}},
   "diagnostic-languageserver.formatFiletypes":{"go":"goreturns"},
-  "coc.preferences.formatOnSaveFiletypes":["go"]
+  "coc.preferences.formatOnSaveFiletypes":["go", "javascript","javascriptreact","typescript","typescriptreact"],
+  "tsserver.formatOnType": true,
+  "coc.preferences.formatOnType": true,
+  "eslint.autoFixOnSave": true,
+  "eslint.filetypes": ["javascript", "javascriptreact", "typescript", "typescriptreact"]
 }
