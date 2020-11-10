@@ -39,7 +39,10 @@ syntax on
 source $VIMRUNTIME/delmenu.vim
 source $VIMRUNTIME/menu.vim
 
-language messages zh_CN.utf-8
+try
+  language messages zh_CN.utf-8
+catch
+endtry
 
 " <Config>
 
@@ -186,7 +189,7 @@ func! OnInit(needUpdate)
   map <silent> <F5> <ESC>:Tree<CR>
   map! <silent> <F5> <F5>
 
-  let g:NERDTreeIndicatorMapCustom = {
+  let g:NERDTreeGitStatusIndicatorMapCustom = {
     \ "Modified"  : "✹",
     \ "Staged"    : "✚",
     \ "Untracked" : "✭",
