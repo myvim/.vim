@@ -11,7 +11,7 @@
     }
   },
   "explorer.icon.enableNerdfont":true,
-  "explorer.keyMappings":{
+  "explorer.keyMappings.global":{
     "<cr>":["expandable?", ["expanded?", "collapse", "expand"], "open"]
   },
   "diagnostic-languageserver.filetypes":{"go":"golangci-lint"},
