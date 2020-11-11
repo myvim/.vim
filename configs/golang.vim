@@ -40,3 +40,5 @@ function GoInstall()
 endfunction
 
 command! GoInstall :call GoInstall()
+
+autocmd BufWritePre *.go :call CocAction('organizeImport')
