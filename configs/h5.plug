@@ -11,3 +11,5 @@ Plug 'jparise/vim-graphql'
 Plug 'elzr/vim-json'
 Plug 'peitalin/vim-jsx-typescript'
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+
+let g:coc_global_extensions += ['coc-vetur'] " vue plugin
