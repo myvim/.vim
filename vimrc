@@ -185,7 +185,7 @@ func! OnInit(needUpdate)
   "vim-one true color support
   if (empty($TMUX))
     if (has("nvim"))
-    "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
+      "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
       let $NVIM_TUI_ENABLE_TRUE_COLOR=1
     endif
     "For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
@@ -199,22 +199,25 @@ func! OnInit(needUpdate)
   set background=light
   colorscheme one
 
+  highlight Cursor guifg=white guibg=steelblue
+  set guicursor=n-v-c:block-Cursor
+
   command! Tree :NERDTreeToggle
   map <silent> <F5> <ESC>:Tree<CR>
   map! <silent> <F5> <F5>
 
   let g:NERDTreeGitStatusIndicatorMapCustom = {
-    \ "Modified"  : "✹",
-    \ "Staged"    : "✚",
-    \ "Untracked" : "✭",
-    \ "Renamed"   : "➜",
-    \ "Unmerged"  : "═",
-    \ "Deleted"   : "✖",
-    \ "Dirty"     : "✗",
-    \ "Clean"     : "✔︎",
-    \ 'Ignored'   : '☒',
-    \ "Unknown"   : "?"
-    \ }
+        \ "Modified"  : "✹",
+        \ "Staged"    : "✚",
+        \ "Untracked" : "✭",
+        \ "Renamed"   : "➜",
+        \ "Unmerged"  : "═",
+        \ "Deleted"   : "✖",
+        \ "Dirty"     : "✗",
+        \ "Clean"     : "✔︎",
+        \ 'Ignored'   : '☒',
+        \ "Unknown"   : "?"
+        \ }
 
   call LoadRcs($vim_cfg_dir.'/configs', '*.vim')
   call LoadRcs($vim_cfg_dir.'/configs.local', '*.vim')
