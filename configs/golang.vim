@@ -41,4 +41,4 @@ endfunction
 
 command! GoInstall :call GoInstall()
 
-autocmd BufWritePre *.go :call CocAction('organizeImport')
+let g:go_fmt_command = "goimports"

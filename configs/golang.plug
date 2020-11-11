@@ -1,1 +1,2 @@
 Plug 'godoctor/godoctor.vim'
+Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
