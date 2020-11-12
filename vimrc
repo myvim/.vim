@@ -155,33 +155,7 @@ func! LoadRcs(path, filter)
   endfor
 endf
 
-" Extends And Configs Write Here
-func! OnInit(needUpdate)
-  call plug#begin(g:plugged_path)
-
-  Plug 'junegunn/vim-plug'
-
-  Plug 'rakr/vim-one'
-  Plug 'preservim/nerdcommenter'
-  Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
-  Plug 'Yggdroot/indentLine'
-  Plug 'bronson/vim-trailing-whitespace'
-  Plug 'vim-airline/vim-airline'
-  Plug 'vim-airline/vim-airline-themes'
-  Plug 'tpope/vim-fugitive'
-  Plug 'junegunn/gv.vim'
-  Plug 'Xuyuanp/nerdtree-git-plugin'
-  Plug 'terryma/vim-multiple-cursors'
-
-  call LoadRcs($vim_cfg_dir.'/configs', '*.plug')
-  call LoadRcs($vim_cfg_dir.'/configs.local', '*.plug')
-
-  call plug#end()
-
-  if a:needUpdate
-    :PlugUpdate
-  end
-
+func! LocalConfig()
   "vim-one true color support
   if (empty($TMUX))
     if (has("nvim"))
@@ -218,6 +192,36 @@ func! OnInit(needUpdate)
         \ 'Ignored'   : '☒',
         \ "Unknown"   : "?"
         \ }
+endf
+
+" Extends And Configs Write Here
+func! OnInit(needUpdate)
+  call plug#begin(g:plugged_path)
+
+  Plug 'junegunn/vim-plug'
+
+  Plug 'rakr/vim-one'
+  Plug 'preservim/nerdcommenter'
+  Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
+  Plug 'Yggdroot/indentLine'
+  Plug 'bronson/vim-trailing-whitespace'
+  Plug 'vim-airline/vim-airline'
+  Plug 'vim-airline/vim-airline-themes'
+  Plug 'tpope/vim-fugitive'
+  Plug 'junegunn/gv.vim'
+  Plug 'Xuyuanp/nerdtree-git-plugin'
+  Plug 'terryma/vim-multiple-cursors'
+
+  call LoadRcs($vim_cfg_dir.'/configs', '*.plug')
+  call LoadRcs($vim_cfg_dir.'/configs.local', '*.plug')
+
+  call plug#end()
+
+  if a:needUpdate
+    :PlugUpdate
+  end
+
+  call LocalConfig()
 
   call LoadRcs($vim_cfg_dir.'/configs', '*.vim')
   call LoadRcs($vim_cfg_dir.'/configs.local', '*.vim')
