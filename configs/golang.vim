@@ -45,3 +45,5 @@ let g:go_fmt_command = "goimports"
 autocmd FileType go nmap gtj :CocCommand go.tags.add json<cr>
 autocmd FileType go nmap gty :CocCommand go.tags.add yaml<cr>
 autocmd FileType go nmap gtx :CocCommand go.tags.clear<cr>
+autocmd FileType go nmap gtjr :CocCommand go.tags.remove json<cr>
+autocmd FileType go nmap gtyr :CocCommand go.tags.remove yaml<cr>
