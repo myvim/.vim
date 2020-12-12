@@ -39,11 +39,6 @@ syntax on
 source $VIMRUNTIME/delmenu.vim
 source $VIMRUNTIME/menu.vim
 
-try
-  language messages zh_CN.utf-8
-catch
-endtry
-
 " <Config>
 
 if has("gui_win32")
