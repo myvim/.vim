@@ -10,6 +10,7 @@
       "rootPatterns": [".flowconfig"]
     }
   },
+  "explorer.filename.colored.enable": false,
   "explorer.file.showHiddenFiles":true,
   "explorer.icon.enableNerdfont":true,
   "explorer.keyMappings.global":{
