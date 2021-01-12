@@ -1,5 +1,5 @@
 function ConfigCoc()
-  let g:coc_config_home = $vim_cfg_dir.'/configs'
+  let g:coc_config_home = $vim_cfg_dir.'/configs/coc'
   let g:coc_start_at_startup = 1
   let g:coc_global_extensions	+= ['coc-json', 'coc-explorer', 'coc-diagnostic', 'coc-snippets', 'coc-cmake', 'coc-git', 'coc-highlight', 'coc-sh', 'coc-vimlsp', 'coc-syntax', 'coc-pairs', 'coc-yaml']
 
