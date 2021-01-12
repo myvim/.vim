@@ -141,7 +141,10 @@ func! ExtendsLoad(needUpdate)
 endf
 
 func! LoadRcs(path, filter)
-  for $rc in split(globpath(a:path, a:filter), '\n')
+  for $rc in split(globpath(a:path, '**'), '\n')
+    if matchend($rc, a:filter) != strlen($rc)
+      continue
+    end
     try
       source $rc
     catch
@@ -207,8 +210,9 @@ func! OnInit(needUpdate)
   Plug 'Xuyuanp/nerdtree-git-plugin'
   Plug 'terryma/vim-multiple-cursors'
 
-  call LoadRcs($vim_cfg_dir.'/configs', '*.plug')
-  call LoadRcs($vim_cfg_dir.'/configs.local', '*.plug')
+  let $plug_reg = '.plug$'
+  call LoadRcs($vim_cfg_dir.'/configs', $plug_reg)
+  call LoadRcs($vim_cfg_dir.'/configs.local', $plug_reg)
 
   call plug#end()
 
@@ -218,8 +222,9 @@ func! OnInit(needUpdate)
 
   call LocalConfig()
 
-  call LoadRcs($vim_cfg_dir.'/configs', '*.vim')
-  call LoadRcs($vim_cfg_dir.'/configs.local', '*.vim')
+  let $vim_reg = '.vim$'
+  call LoadRcs($vim_cfg_dir.'/configs', $vim_reg)
+  call LoadRcs($vim_cfg_dir.'/configs.local', $vim_reg)
 endf
 
 command! ExLoad call ExtendsLoad(0)
