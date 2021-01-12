@@ -1,6 +1,7 @@
 " IDE Supports
 
 Plug 'vim-scripts/a.vim'
+Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'Raimondi/delimitMate'
 Plug 'gregsexton/MatchTag'
