@@ -142,7 +142,7 @@ endf
 
 func! LoadRcs(path, filter)
   for $rc in split(globpath(a:path, '**'), '\n')
-    if matchend($rc, a:filter) != strlen($rc)
+    if !(matchend($rc, a:filter) == strlen($rc) && filereadable($rc))
       continue
     end
     try
