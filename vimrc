@@ -121,6 +121,16 @@ call HideMenu()
 command! ToggleMenu call ToggleMenu()
 map <silent> <F11> :ToggleMenu<CR>
 
+func! ToggleBg()
+  if &bg == 'light'
+    set bg=dark
+  elseif &bg == 'dark'
+    set bg=light
+  end
+endf
+command! ToggleBg call ToggleBg()
+map <silent> <F10> :ToggleBg<CR>
+
 " <Extends>
 
 let g:plugged_path = $vim_cfg_dir.'/plugged'
@@ -168,7 +178,12 @@ func! LocalConfig()
     endif
   endif
 
-  set background=light
+  if $VIM_BG_DARK != ''
+    set bg=dark
+  else
+    set bg=light
+  endif
+
   colorscheme one
 
   highlight Cursor guifg=white guibg=steelblue
