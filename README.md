@@ -39,9 +39,11 @@ to install/update extends
 :Config               :     Edit vimrc
 :RlConfig             :     Reload vimrc
 :Tree                 :     Toggle File Explorer Tree
+:ToggleBg             :     Toggle Theme Light/Dark (or set env VIM_BG_DARK=1)
 :ToggleMenu           :     Toggle GUI Vim Title/Menu
 
 F5                    :     eq `:Tree`
 F11                   :     eq `:ToggleMenu`
+F10                   :     eq `:ToggleBg`
 F12                   :     eq `:Config`
 ```
