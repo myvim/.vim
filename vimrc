@@ -223,7 +223,7 @@ func! OnInit(needUpdate)
   Plug 'tpope/vim-fugitive'
   Plug 'junegunn/gv.vim'
   Plug 'Xuyuanp/nerdtree-git-plugin'
-  Plug 'terryma/vim-multiple-cursors'
+  Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 
   let $plug_reg = '.plug$'
   call LoadRcs($vim_cfg_dir.'/configs', $plug_reg)
