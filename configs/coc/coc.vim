@@ -74,6 +74,8 @@ function ConfigCoc()
   nnoremap <silent> <Leader>ff  :<C-u>CocList outline<cr>
   " Renaming
   nmap <leader>rn <Plug>(coc-rename)
+  " Refactor
+  nmap <leader>rf <Plug>(coc-refactor)
 endfunction
 
 if executable("node")
