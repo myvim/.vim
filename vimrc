@@ -88,11 +88,17 @@ map! <silent> <D-a> <ESC><D-a>
 let $vim_home_dir = $HOME.'/.vim'
 let $vim_sys_dir = $VIM.'/.vim'
 
-let $vim_cfg_dir = $vim_home_dir
-if !filereadable($vim_cfg_dir.'/vimrc') && ( filereadable($vim_sys_dir.'/vimrc') )
+let $vim_cfg_dir = $VIM_HOME
+if !isdirectory($vim_cfg_dir) && isdirectory($vim_home_dir)
+  let $vim_cfg_dir = $vim_home_dir
+end
+if !isdirectory($vim_cfg_dir) && isdirectory($vim_sys_dir)
   let $vim_cfg_dir = $vim_sys_dir
 end
-let $vimrc_path = $vim_cfg_dir.'/vimrc'
+let $vimrc_path = $MYVIMRC
+if !filereadable($vimrc_path)
+  let $vimrc_path = $vim_cfg_dir.'/vimrc'
+end
 
 command! Config :e $vimrc_path
 command! RlConfig :so $vimrc_path
