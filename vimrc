@@ -230,6 +230,7 @@ func! OnInit(needUpdate)
   Plug 'junegunn/gv.vim'
   Plug 'Xuyuanp/nerdtree-git-plugin'
   Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+  Plug 'guns/xterm-color-table.vim'
 
   let $plug_reg = '.plug$'
   call LoadRcs($vim_cfg_dir.'/configs', $plug_reg)
